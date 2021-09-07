@@ -53,22 +53,9 @@ func GetCgroupSubsystems(includedMetrics container.MetricSet) (CgroupSubsystems,
 		disableCgroups["io"] = struct{}{}
 	}
 
-	if !includedMetrics.Has(container.CPUSetMetrics) {
-		disableCgroups["cpuset"] = struct{}{}
-	}
-
-	if !includedMetrics.Has(container.HugetlbUsageMetrics) {
-		disableCgroups["hugetlb"] = struct{}{}
-	}
-
 	if !includedMetrics.Has(container.MemoryUsageMetrics) {
 		disableCgroups["memory"] = struct{}{}
 	}
-
-	if !includedMetrics.Has(container.PerfMetrics) {
-		disableCgroups["perf_event"] = struct{}{}
-	}
-
 	return getCgroupSubsystemsHelper(allCgroups, disableCgroups)
 }
 
